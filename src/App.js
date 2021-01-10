@@ -2,7 +2,7 @@ import "./style.css";
 import React from "react";
 import PropTypes from "prop-types";
 
-const movieLike = [
+/*const movieLike = [
   {
     id: 1,
     name: "Mission Impossible: FALL OUT",
@@ -31,30 +31,52 @@ const movieLike = [
       "https://upload.wikimedia.org/wikipedia/en/b/bd/Spider-Man_Far_From_Home_poster.jpg",
     rating: 4.0
   }
-];
+];*/
 
-function Movie({ name, picture, rating }) {
-  return (
+/*class App extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  state = {
+    count: 0
+  };
+  add = () => {
+    this.setState(current=>({count: current.count+1}));
+  };
+  minus = () => {
+    this.setState(current=>({count: current.count-1}));
+  };
+  componentDidMount(){
+
+  };
+  componentDidUpdate(){
+
+  };
+  render(){
+    return (
     <div>
-      <h3>{name}</h3>
-      <h4>{rating}/5.0</h4>
-      <img src={picture} alt={name} />
+    <h1>The number is: {this.state.count}</h1>
+    <button onClick={this.add}>Add</button>
+    <button onClick={this.minus}>Minus</button>
     </div>
-  );
-}
+    );
+  }
+}*/
 
-// Describe something that I want to get
-Movie.propTypes = {
-
-}
-
-export default function App() {
-  return (
-    <div>
-      {movieLike.map(ticket => (
-        <Movie key={ticket.id} name={ticket.name} picture={ticket.image}
-        rating={ticket.rating} />
-      ))}
-    </div>
-  );
+export default class App extends React.Component{
+  state={
+    isLoading: true,
+    movies: []
+  };
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState({isLoading:false, book:true});
+    }, 2000);
+  };
+  render(){
+    const {isLoading} = this.state;
+    return(
+      <div>{isLoading ? "Loading.." : "We are ready"}</div>
+    );
+  }
 }

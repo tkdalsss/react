@@ -1,6 +1,6 @@
 import "./style.css";
 import React from "react";
-import PropTypes from "prop-types";
+import axios from "axios";
 
 /*const movieLike = [
   {
@@ -63,20 +63,22 @@ import PropTypes from "prop-types";
   }
 }*/
 
-export default class App extends React.Component{
-  state={
+export default class App extends React.Component {
+  state = {
     isLoading: true,
     movies: []
   };
-  componentDidMount(){
-    setTimeout(()=>{
-      this.setState({isLoading:false, book:true});
-    }, 2000);
+  getMovies = async () => {
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
   };
-  render(){
-    const {isLoading} = this.state;
-    return(
-      <div>{isLoading ? "Loading.." : "We are ready"}</div>
-    );
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 6000);
+    this.getMovies();
+  }
+  render() {
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading.." : "We are ready"}</div>;
   }
 }

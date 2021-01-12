@@ -72,12 +72,13 @@ export default class App extends React.Component {
   getMovies = async () => {
     const {
       data: {
-        data: { movies }
+        data: { movies } 
       }
     } = await axios.get(
       "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
     );
-    this.setState({ movies, isLoading: false }); // equals {movies:movies}
+    this.setState({ movies, isLoading: false });
+    // equals {movies(from state):movies(from axios)}
   };
   componentDidMount() {
     this.getMovies();
@@ -97,7 +98,7 @@ export default class App extends React.Component {
                 summary={movie.summary}
                 poster={movie.medium_cover_image}
               />
-          ))}
+            ))}
       </div>
     );
   }
